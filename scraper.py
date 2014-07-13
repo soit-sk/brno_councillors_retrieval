@@ -2,9 +2,9 @@ import lxml.html
 import re
 import scraperwiki
 
-scraperwiki.sqlite.attach('brno_councillors_downloader', 'src')
+url = "http://www.brno.cz/sprava-mesta/volene-organy-mesta/zastupitelstvo-mesta-brna/clenove-zastupitelstva-mesta-brna/"
+input = scraperwiki.scrape(url)
 
-input = scraperwiki.sqlite.select("* from src.swdata");
 for rd in input:
     page = lxml.html.fromstring(rd['html'])
     for a in page.xpath("//a[starts-with(@href, 'mailto:')]"):
@@ -23,5 +23,5 @@ for rd in input:
                     'email': email_ref[7:],
                     'party': party
                 }
-            scraperwiki.sqlite.save(unique_keys=['email'], data=data)
+            scraperwiki.sqlite.save(['email'], data)
 
