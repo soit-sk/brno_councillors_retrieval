@@ -2,7 +2,7 @@ import lxml.html
 import re
 import scraperwiki
 
-url = "http://www.brno.cz/sprava-mesta/volene-organy-mesta/zastupitelstvo-mesta-brna/clenove-zastupitelstva-mesta-brna/"
+url = "http://www.brno.cz/sprava-mesta/volene-organy-mesta/zastupitelstvo-mesta-brna/"
 input = scraperwiki.scrape(url)
 
 page = lxml.html.fromstring(input)
